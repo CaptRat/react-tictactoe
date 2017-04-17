@@ -23,7 +23,8 @@
         height: 33.3%;
         width: 33.3%;
         border: thin solid black;
-        font-size: 28vw;
+        font-size: 15vw;
+        color: black;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -36,10 +37,7 @@
 
     </style>
 
-
   </head>
-
-
 
   <body>
     <h1>Hello World</h1>
@@ -63,12 +61,31 @@
 
       const board = document.querySelector('.board')
       board.addEventListener('click', (e) => {
-        console.log("yo");
-        e.target.innerHMTL = player
+        e.target.innerHTML = player
         player = player === player_x ? player_o : player_x
-        console.log(player);
+
+        checkPlay()
       })
 
+      const checkPlay = () => {
+        const cells = document.querySelectorAll('.cell')
+        const cellsArr = Array.prototype.slice.call(cells,  0)
+        const plays = cellsArr.map(cell => {
+          return cell.innerHTML
+        })
+        const wins =[[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]]
+
+      const winner = wins.find(combo => {
+        if (plays[combo[0]] === plays[combo[1]] &&
+          plays[combo[1]] === plays[combo[2]]) {
+            return plays[combo[0]]
+          }
+          else {
+            return false
+          }
+        })
+        console.log(winner);
+      }
     </script>
   </body>
 </html>

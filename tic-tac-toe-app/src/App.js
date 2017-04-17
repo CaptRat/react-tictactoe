@@ -5,11 +5,16 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      msg: "Hello, Puppies"
-    }
+    // this.state = {
+    //   msg: "Hello, Puppies"
+    // }
   }
 
+  componentWillMount(){
+    this.state = {
+      msg: 'Yo Yo, World!'
+    }
+  }
   render() {
     return (
       <div className="App">
