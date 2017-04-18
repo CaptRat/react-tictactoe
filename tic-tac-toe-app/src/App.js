@@ -38,9 +38,11 @@ class App extends Component {
 
   handleClick(index) {
     if(this.state.board[index] === '') {
-      this.state.board[index] = this.state.player
+      // this.state.board[index] = this.state.player  this line causes mutating state error
+      let newState = this.state.board
+      newState[index] = this.state.player
       this.setState({
-        board: this.state.board,
+        board: newState,
         player: this.state.player_x === this.state.player ?
         this.state.player_o : this.state.player_x,
         winner: this.checkPlay() ? this.state.player : null
